@@ -39,20 +39,37 @@ void draw() {
     // Filtrera datt shitt
     leftOutput = coff[0]*left[0] + coff[1]*left[1] + coff[2]*left[2] + coff[3]*left[3];
     rightOutput = coff[0]*right[0] + coff[1]*right[1] + coff[2]*right[2] + coff[3]*right[3];
-    
+
     // Calculate diff
-    diff = rightOutput - leftOutput;
+    diff = (rightOutput-leftOutput)/2;
+    println(diff);
 
     // Rita datt shit
     stroke(255, 0, 0);
     line(xPos, height, xPos, height - leftOutput);
-    stroke(255,255,0);
-    line(xPos, 0, xPos, diff+200);
+    stroke(255, 255, 0);
+    line(xPos, 200, xPos, diff+200);
     xPos++;
     stroke(0, 0, 255);
     line(xPos, height, xPos, height - rightOutput);
-    stroke(255,255,0);
-    line(xPos, 0, xPos, diff+200);
+    stroke(255, 255, 0);
+    line(xPos, 200, xPos, diff+200);
+
+
+    // Skicka diffen
+    if ((diff>50)) {
+      myPort.write('1');
+    } else if ((diff<50) && (diff>25)) {
+      myPort.write('2');
+    } else if ((diff<25) && (diff>-25)) {
+      myPort.write('3');
+    } else if ((diff<-25) && (diff>-50)) {
+      myPort.write('4');
+    } else if ((diff<-50)) {
+      myPort.write('5');
+    } else {
+      myPort.write('0');
+    }
 
     // Flytta arrayen änna
     left[3] = left[2];
@@ -86,7 +103,7 @@ void serialEvent (Serial myPort) {
     left[0] = map(left[0], 0, 200, 0, height);
     right[0] = float(split[1]);
     right[0] = map(right[0], 0, 200, 0, height);
-    
+
     gotInput = true;
   }
 }
