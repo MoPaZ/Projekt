@@ -12,6 +12,7 @@ int i = 0;
 boolean gotInput;
 
 float[] coff;
+float diff;
 
 void setup() {
   size(1024, 960);  
@@ -38,13 +39,20 @@ void draw() {
     // Filtrera datt shitt
     leftOutput = coff[0]*left[0] + coff[1]*left[1] + coff[2]*left[2] + coff[3]*left[3];
     rightOutput = coff[0]*right[0] + coff[1]*right[1] + coff[2]*right[2] + coff[3]*right[3];
+    
+    // Calculate diff
+    diff = rightOutput - leftOutput;
 
     // Rita datt shit
     stroke(255, 0, 0);
     line(xPos, height, xPos, height - leftOutput);
+    stroke(255,255,0);
+    line(xPos, 0, xPos, diff+200);
     xPos++;
     stroke(0, 0, 255);
     line(xPos, height, xPos, height - rightOutput);
+    stroke(255,255,0);
+    line(xPos, 0, xPos, diff+200);
 
     // Flytta arrayen änna
     left[3] = left[2];

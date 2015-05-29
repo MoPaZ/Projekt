@@ -18,8 +18,7 @@
 NewPing sonar1(TRIGGER_PIN1, ECHO_PIN1, MAX_DISTANCE);
 NewPing sonar2(TRIGGER_PIN2, ECHO_PIN2, MAX_DISTANCE);
 
-// Variableeessssss
-int diff;
+int input;
 
 void setup() {
   pinMode(LedL2, OUTPUT);
@@ -32,20 +31,47 @@ void setup() {
 
 void loop() {
 
+  // Get serial ORDERS
+  if (Serial.available()) {
+    input = Serial.read();
+    if (input == '1') {
+      digitalWrite(LedL2, HIGH);
+    } else {
+      digitalWrite(LedL2, LOW);
+    }
+    if (input == '2') {
+      digitalWrite(LedL1, HIGH);
+    } else {
+      digitalWrite(LedL1, LOW);
+    }
+    if (input == '3') {
+      digitalWrite(LedC, HIGH);
+    } else {
+      digitalWrite(LedC, LOW);
+    }
+    if (input == '4') {
+      digitalWrite(LedR1, HIGH);
+    } else {
+      digitalWrite(LedR1, LOW);
+    }
+    if (input == '5') {
+      digitalWrite(LedR2, HIGH);
+    } else {
+      digitalWrite(LedR2, LOW);
+    }
+  }
+
   // Ping thoose sonars!!
   unsigned int uS1 = sonar1.ping() / US_ROUNDTRIP_CM;      // Ping sensor left
   delay(50);                                               // Delay for interference
   unsigned int uS2 = sonar2.ping() / US_ROUNDTRIP_CM;      // Ping sensor right
   delay(50);                                               // Funny delay
-  
-  // Calculating stuff
-  diff = uS1-uS2;
+
 
   // Serial stuff
   Serial.print(uS1);
   Serial.print(" ");
-  Serial.print(uS2);
-  Serial.print(" ");
-  Serial.println(diff);
+  Serial.println(uS2);
+
 
 }
