@@ -35,14 +35,14 @@ void loop() {
   if (Serial.available()) {
     input = Serial.read();
     if (input == '1') {
-      digitalWrite(LedL2, HIGH);
+      digitalWrite(LedR2, HIGH);
     } else {
-      digitalWrite(LedL2, LOW);
+      digitalWrite(LedR2, LOW);
     }
     if (input == '2') {
-      digitalWrite(LedL1, HIGH);
+      digitalWrite(LedR1, HIGH);
     } else {
-      digitalWrite(LedL1, LOW);
+      digitalWrite(LedR1, LOW);
     }
     if (input == '3') {
       digitalWrite(LedC, HIGH);
@@ -50,14 +50,14 @@ void loop() {
       digitalWrite(LedC, LOW);
     }
     if (input == '4') {
-      digitalWrite(LedR1, HIGH);
+      digitalWrite(LedL1, HIGH);
     } else {
-      digitalWrite(LedR1, LOW);
+      digitalWrite(LedL1, LOW);
     }
     if (input == '5') {
-      digitalWrite(LedR2, HIGH);
+      digitalWrite(LedL2, HIGH);
     } else {
-      digitalWrite(LedR2, LOW);
+      digitalWrite(LedL2, LOW);
     }
   }
 
