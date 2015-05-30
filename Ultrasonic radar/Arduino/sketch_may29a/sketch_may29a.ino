@@ -18,6 +18,8 @@
 NewPing sonar1(TRIGGER_PIN1, ECHO_PIN1, MAX_DISTANCE);
 NewPing sonar2(TRIGGER_PIN2, ECHO_PIN2, MAX_DISTANCE);
 
+// Hej jerry
+
 int input;
 
 void setup() {
