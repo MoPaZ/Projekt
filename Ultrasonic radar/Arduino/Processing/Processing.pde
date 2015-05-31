@@ -41,7 +41,7 @@ void draw() {
     rightOutput = coff[0]*right[0] + coff[1]*right[1] + coff[2]*right[2] + coff[3]*right[3];
 
     // Calculate diff
-    diff = (rightOutput-leftOutput)/2;
+    diff = (rightOutput-leftOutput)/((rightOutput+leftOutput)/2);
     println(diff);
 
     // Rita datt shit
@@ -57,15 +57,15 @@ void draw() {
 
 
     // Skicka diffen
-    if ((diff>50)) {
+    if ((diff>1.8)) {
       myPort.write('1');
-    } else if ((diff<50) && (diff>25)) {
+    } else if ((diff<1.8) && (diff>0.25)) {
       myPort.write('2');
-    } else if ((diff<25) && (diff>-25)) {
+    } else if ((diff<0.25) && (diff>-0.25)) {
       myPort.write('3');
-    } else if ((diff<-25) && (diff>-50)) {
+    } else if ((diff<-0.25) && (diff>-1.8)) {
       myPort.write('4');
-    } else if ((diff<-50)) {
+    } else if ((diff<-1.8)) {
       myPort.write('5');
     } else {
       myPort.write('0');

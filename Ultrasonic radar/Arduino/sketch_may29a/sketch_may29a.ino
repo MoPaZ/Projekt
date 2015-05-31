@@ -65,9 +65,9 @@ void loop() {
 
   // Ping thoose sonars!!
   unsigned int uS1 = sonar1.ping() / US_ROUNDTRIP_CM;      // Ping sensor left
-  delay(50);                                               // Delay for interference
+  delay(100);                                               // Delay for interference
   unsigned int uS2 = sonar2.ping() / US_ROUNDTRIP_CM;      // Ping sensor right
-  delay(50);                                               // Funny delay
+  delay(100);                                               // Funny delay
 
 
   // Serial stuff
